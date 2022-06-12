@@ -17,6 +17,6 @@ func Connect() {
 		panic("Could not connect to database")
 	}
 	DB = db
-	db.AutoMigrate(&models.User{}, &models.Role{}, &models.Permission{})
+	db.AutoMigrate(&models.User{}, &models.Role{}, &models.Permission{}, &models.Product{})
 	fmt.Println(db)
 }
