@@ -33,7 +33,7 @@ Content-Type: application/json
 {
   "first_name" : "john",
   "last_name": "doe",
-  "email": "d@d.com",
+  "email": "d@d.com"
 }
 
 ###
@@ -43,7 +43,7 @@ Content-Type: application/json
 {
   "first_name" : "john",
   "last_name": "doe",
-  "email": "j@j.com",
+  "email": "d@d.com",
   "role_id": 1
 }
 

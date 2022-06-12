@@ -4,13 +4,31 @@ import (
 	"api_management/database"
 	"api_management/models"
 	"github.com/gofiber/fiber/v2"
+	"math"
 	"strconv"
 )
 
+// AllUsers adding pagination
 func AllUsers(ctx *fiber.Ctx) error {
+	page, _ := strconv.Atoi(ctx.Query("page", "1"))
+
+	limit := 5
+	offset := (page - 1) * limit
+
 	var users []models.User
-	database.DB.Find(&users)
-	return ctx.JSON(users)
+
+	var total int64
+
+	database.DB.Preload("UserRoles").Offset(offset).Limit(limit).Find(&users)
+
+	return ctx.JSON(fiber.Map{
+		"data": users,
+		"metadata": fiber.Map{
+			"total":     total,
+			"page":      page,
+			"last_page": math.Ceil(float64(int(total) / limit)),
+		},
+	})
 }
 
 func CreateUser(ctx *fiber.Ctx) error {

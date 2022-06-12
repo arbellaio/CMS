@@ -12,6 +12,11 @@ func Setup(app *fiber.App) {
 
 	app.Use(middlewares.IsAuthenticated)
 
+	//Profile Controller
+	app.Put("/api/users/info", controllers.UpdateProfileInfo)
+	app.Put("/api/users/password", controllers.UpdatePassword)
+
+	//User Controller
 	app.Get("/api/user", controllers.User)
 	app.Get("/api/users/:id", controllers.GetUser)
 	app.Put("/api/users/:id", controllers.UpdateUser)
@@ -19,11 +24,18 @@ func Setup(app *fiber.App) {
 	app.Get("/api/users", controllers.AllUsers)
 	app.Post("/api/users", controllers.CreateUser)
 
+	//Role Controller
 	app.Get("/api/roles/:id", controllers.GetRole)
 	app.Put("/api/roles/:id", controllers.UpdateRole)
 	app.Delete("/api/roles/:id", controllers.DeleteRole)
 	app.Get("/api/roles", controllers.AllRoles)
 	app.Post("/api/roles", controllers.CreateRole)
+	app.Post("/api/rolePermissions", controllers.CreateRoleWithPermissions)
+	app.Put("/api/rolePermissions/:id", controllers.UpdateRoleWithPermissions)
+	app.Get("/api/rolePermissions/:id", controllers.GetRoleWithPermissions)
+
+	//Permission Controller
+	app.Get("/api/permissions", controllers.AllPermissions)
 
 	app.Get("/api/logout", controllers.LogOut)
 }

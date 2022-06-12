@@ -6,6 +6,10 @@ GET http://localhost:8000/api/roles/1
 Accept: application/json
 
 ###
+GET http://localhost:8000/api/rolePermissions/42
+Accept: application/json
+
+###
 PUT http://localhost:8000/api/roles/1
 Content-Type: application/json
 
@@ -30,6 +34,18 @@ Content-Type: application/json
   "role_id": 1,
   "name": "Admin"
 }
+
+
+###
+POST http://localhost:8000/api/rolePermissions
+Content-Type: application/json
+
+{
+  "role_id": 3,
+  "name": "Manager",
+  "permissions": [1,2]
+}
+
 
 
 

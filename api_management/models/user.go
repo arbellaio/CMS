@@ -11,8 +11,8 @@ type User struct {
 	LastName  string `json:"last_name"`
 	Email     string `gorm:"unique" json:"email"`
 	Password  []byte `json:"password"`
-	RoleId    uint   `json:"role_id"`
-	Role      Role   `json:"role" gorm:"foreignKey:RoleId"`
+	//Many To Many With Help Of GORM
+	Roles []Role `json:"roles" gorm:"many2many:user_roles"`
 }
 
 // adding method to struct
